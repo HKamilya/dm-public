@@ -32,8 +32,8 @@ if __name__ == '__main__':
             d[c] = 0
         if c in d:
             d[c] += 1
-        # if count % 1000 == 0:
-        #     time.sleep(0.2)
+        if count % 1000 == 0:
+            time.sleep(0.2)
 
     ams = int((len(stream) * sum((2 * v - 1) for v in d.values())) / len(d))
 
