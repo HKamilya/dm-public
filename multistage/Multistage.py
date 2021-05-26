@@ -11,7 +11,7 @@ def get_data():
 
 
 def get_index_from_dict(dictionary):
-    return len(dictionary.keys())+1
+    return len(dictionary.keys()) + 1
 
 
 df = get_data()
@@ -45,7 +45,6 @@ for index, row in df.iterrows():
         }
     stock_dictionary[stock]['count'] += 1
 
-
 # PASS #2
 combination_dictionary = {}
 # combination_dictionary = {
@@ -65,22 +64,16 @@ hash2_dict = {}
 for stocks in customer_dictionary.values():
     for subset in itertools.combinations(stocks, 2):
         if subset not in combination_dictionary:
-            try:
-                combination_dictionary[subset] = {
-                    'combination': subset,
-                    'count': 0,
-                    'hash1': (stock_dictionary[subset[0]]['id'] + stock_dictionary[subset[1]]['id']) % len(
-                        stock_dictionary.keys()),
-                    'hash2': (stock_dictionary[subset[0]]['id'] + 2 * stock_dictionary[subset[1]]['id']) % len(
-                        stock_dictionary.keys())
-                }
-            except:
-                print((stock_dictionary[subset[0]]['id'] + stock_dictionary[subset[1]]['id']))
-                print('dd')
-                print('dd')
-                print('dd')
+            combination_dictionary[subset] = {
+                'combination': subset,
+                'count': 0,
+                'hash1': (stock_dictionary[subset[0]]['id'] + stock_dictionary[subset[1]]['id']) % len(
+                    stock_dictionary.keys()),
+                'hash2': (stock_dictionary[subset[0]]['id'] + 2 * stock_dictionary[subset[1]]['id']) % len(
+                    stock_dictionary.keys())
+            }
 
-            combination_dictionary[subset]['count'] += 1
+        combination_dictionary[subset]['count'] += 1
 
 for subset_item in combination_dictionary.values():
     count = subset_item['count']
